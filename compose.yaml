@@ -1,0 +1,54 @@
+name: issuepilot
+
+x-issuepilot-common: &issuepilot-common
+  image: issuepilot:0.1.0-compose
+  build:
+    context: .
+    dockerfile: Dockerfile
+  env_file:
+    - "${ISSUEPILOT_ENV_FILE:-docker.env}"
+  environment:
+    ISSUEPILOT_DB: /var/lib/issuepilot/tasks.sqlite3
+    ISSUEPILOT_DATASET: /app/seed/issues_demo.json
+  volumes:
+    - issuepilot_data:/var/lib/issuepilot
+  init: true
+  restart: unless-stopped
+  stop_grace_period: 60s
+  read_only: true
+  tmpfs:
+    - /tmp:size=64m,mode=1777
+  security_opt:
+    - no-new-privileges:true
+  logging:
+    driver: json-file
+    options:
+      max-size: 10m
+      max-file: "3"
+
+services:
+  api:
+    <<: *issuepilot-common
+    command: ["python", "-m", "uvicorn", "issuepilot.api:app", "--host", "0.0.0.0", "--port", "8790"]
+    ports:
+      - "127.0.0.1:8791:8790"
+    healthcheck:
+      test: ["CMD", "python", "/app/docker/healthcheck.py", "api"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  worker:
+    <<: *issuepilot-common
+    command: ["python", "-m", "issuepilot.worker", "--poll-seconds", "3"]
+    healthcheck:
+      test: ["CMD", "python", "/app/docker/healthcheck.py", "worker"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  issuepilot_data:
+    name: "${ISSUEPILOT_DATA_VOLUME:-issuepilot_compose_data}"

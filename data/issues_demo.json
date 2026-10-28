@@ -1,0 +1,46 @@
+{
+  "dataset_kind": "synthetic_demo",
+  "license_note": "Original synthetic examples written for IssuePilot; no GitHub Issue text is reproduced.",
+  "items": [
+    {
+      "repository": "example/issuepilot-demo",
+      "issue_number": 1001,
+      "title": "Editor closes when opening a very large workspace file",
+      "body": "Synthetic example: on DemoOS 4, opening a workspace file larger than 200 MB closes the editor. The behavior repeats with extensions disabled. Expected: show the file or a size warning without terminating the editor.",
+      "sample_group": "synthetic_bug",
+      "existing_labels": [],
+      "human_verified": false,
+      "url": "https://github.com/example/issuepilot-demo/issues/1001"
+    },
+    {
+      "repository": "example/issuepilot-demo",
+      "issue_number": 1002,
+      "title": "Large project file causes the editor process to exit",
+      "body": "Synthetic example: loading a 250 MB generated project file makes the editor process exit on DemoOS 4. Extensions are disabled. Expected: keep running and explain any supported file-size limit.",
+      "sample_group": "synthetic_bug",
+      "existing_labels": [],
+      "human_verified": false,
+      "url": "https://github.com/example/issuepilot-demo/issues/1002"
+    },
+    {
+      "repository": "example/issuepilot-demo",
+      "issue_number": 1003,
+      "title": "Add a shortcut for switching review panels",
+      "body": "Synthetic example: please add a configurable keyboard shortcut that cycles between the review panels. The action should appear in the command palette and remain accessible to screen readers.",
+      "sample_group": "synthetic_feature_request",
+      "existing_labels": [],
+      "human_verified": false,
+      "url": "https://github.com/example/issuepilot-demo/issues/1003"
+    },
+    {
+      "repository": "example/issuepilot-demo",
+      "issue_number": 1004,
+      "title": "How can I change the demo cache location?",
+      "body": "Synthetic example: I cannot find the setting that changes the demo cache directory. Is this currently configurable, and which configuration key should I use?",
+      "sample_group": "synthetic_question",
+      "existing_labels": [],
+      "human_verified": false,
+      "url": "https://github.com/example/issuepilot-demo/issues/1004"
+    }
+  ]
+}

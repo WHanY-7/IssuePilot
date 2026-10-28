@@ -1,0 +1,86 @@
+IssuePilot curated GitHub release manifest
+Target repository: WHanY-7/IssuePilot (never WHanY-7/IssuePilot-Sandbox)
+
+ALLOW - publish exactly these files
+.dockerignore
+.env.example
+.gitignore
+README.md
+LICENSE
+THIRD_PARTY_NOTICES.md
+bootstrap_windows.ps1
+compose.acceptance.yaml
+compose.yaml
+docker.env.example
+Dockerfile
+requirements.docker.lock
+requirements.txt
+data/issues_demo.json
+docker/healthcheck.py
+docker/mock_worker.py
+issuepilot/__init__.py
+issuepilot/api.py
+issuepilot/config.py
+issuepilot/dataset.py
+issuepilot/db.py
+issuepilot/github_writeback.py
+issuepilot/models.py
+issuepilot/similarity.py
+issuepilot/triage.py
+issuepilot/worker.py
+evaluation/__init__.py
+evaluation/README.md
+evaluation/triage_quality.py
+evaluation/qwen_baseline_finalize.py
+evaluation/qwen_baseline_runner.py
+evaluation/similarity_real_smoke_runner.py
+scripts/__init__.py
+scripts/similarity_mock_demo.py
+tests/test_deployment_config.py
+tests/test_evaluation.py
+tests/test_qwen_baseline_runner.py
+tests/test_similarity.py
+tests/test_similarity_real_smoke_runner.py
+tests/test_workflow.py
+release/release_checklist.md
+release/release_file_manifest.txt
+release/github_publish_plan.md
+
+DENY - never publish from this workspace
+.env
+.env.* except .env.example
+docker.env
+privatecredentials* and *private-credentials*
+.venv/
+.docker-cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+backups/
+logs/
+audit/
+data/issues_seed.json
+data/tasks.sqlite3 and every *.sqlite, *.sqlite3, *.sqlite3-wal, *.sqlite3-shm, *.db
+evaluation/gold_labels_template.csv
+evaluation/gold_labels_template.json
+evaluation/human_review_batch1.csv
+evaluation/human_review_batch1.md
+evaluation/qwen_batch1_blind_input.json
+evaluation/qwen_batch1_request_registry.json
+evaluation/similarity_real_smoke_registry.json
+evaluation/qwen_baseline_*/
+evaluation/similarity_real_smoke_*/
+evaluation/generated/
+all raw model responses, request ledgers, generated predictions, and local evaluation results
+scripts/collect_issues.py
+scripts/triage_smoke.py
+release_validation_*/
+local Docker volumes, exported images, caches, and daemon data
+IDE metadata (.idea/, .vscode/) and OS/user temporary files
+
+NOTES
+- The four records in data/issues_demo.json are synthetic and are the only dataset allowed by this manifest.
+- Internal real-evaluation summaries may be described in README, but their raw source data and outputs are denied.
+- A file not explicitly listed in ALLOW requires a new security and redistribution review before publication.

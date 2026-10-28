@@ -1,0 +1,8 @@
+# Explicit opt-in override for isolated runtime acceptance only.
+# It replaces the real model classifier with docker/mock_worker.py.
+services:
+  worker:
+    command: ["python", "/app/docker/mock_worker.py", "--poll-seconds", "1"]
+    environment:
+      ISSUEPILOT_ACCEPTANCE_MOCK: "enabled"
+      ISSUEPILOT_WORKER_PROCESS_MARKER: "mock_worker.py"
